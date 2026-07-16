@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS Garments – Manufacturer of Quality Uniforms & Workwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0B1F3A;--gold:#C49A2B;--gold-lt:#F0D98A;--cream:#FAF8F4;--warm:#F5F0E8;--text:#1A1A1A;--muted:#5A5A5A;--border:rgba(11,31,58,0.12)}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:#fff;font-size:15px;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+
+/* NAV */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:36px;height:36px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:16px}
+.nav-name{color:#fff;font-weight:500;font-size:15px;letter-spacing:0.3px}
+.nav-badge{background:rgba(196,154,43,0.2);border:1px solid rgba(196,154,43,0.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--gold-lt)}
+
+/* TAB BAR */
+.tab-bar{background:var(--warm);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 2rem}
+.tab{padding:14px 20px;font-size:13px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;letter-spacing:0.3px;transition:all .2s}
+.tab.active,.tab:hover{color:var(--navy)}
+.tab.active{border-bottom-color:var(--gold)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.hero{background:var(--navy);padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;min-height:480px}
+.hero-text h1{font-size:2.8rem;color:#fff;line-height:1.15;margin-bottom:1rem}
+.hero-text h1 span{color:var(--gold-lt)}
+.hero-text p{color:rgba(255,255,255,.7);font-size:1rem;max-width:420px;margin-bottom:2rem;line-height:1.7}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:4px;font-weight:500;text-decoration:none;font-size:14px;display:inline-block}
+.btn-outline{border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:11px 24px;border-radius:4px;font-size:14px;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--gold-lt)}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:1.25rem;text-align:center}
+.hero-card img{width:36px;height:36px;object-fit:contain;display:block;margin:0 auto 8px;border-radius:4px}
+.hero-card p{color:rgba(255,255,255,.8);font-size:13px;font-weight:500}
+
+/* COMMON */
+.section{padding:4rem 2rem}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:500;margin-bottom:8px}
+.section-title{font-size:2rem;color:var(--navy);margin-bottom:1rem}
+.section-sub{color:var(--muted);max-width:540px;margin-bottom:2.5rem}
+.section-title-sm{font-size:1.1rem;color:var(--navy);margin-bottom:.8rem;font-weight:600}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* STATS */
+.stats-bar{background:var(--navy);padding:2.5rem 2rem;display:flex;justify-content:space-around;flex-wrap:wrap;gap:1.5rem}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold-lt);font-weight:700}
+.stat-label{font-size:12px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* INFO ROWS */
+.info-card{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.info-row{display:flex;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:0}
+.info-label{width:180px;flex-shrink:0;font-weight:500;color:var(--muted);font-size:.85rem}
+.info-value{flex:1;font-size:.85rem;color:var(--text)}
+@media(max-width:600px){.info-row{flex-direction:column;gap:2px}.info-label{width:auto}}
+
+/* TAGS */
+.tag{display:inline-block;background:var(--warm);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--navy);font-weight:500;margin:3px}
+.tag-green{background:#e6f7e6;color:#1a7d1a;border-color:#b8e6b8}
+.tag-gold{background:rgba(196,154,43,.12);color:var(--gold);border-color:rgba(196,154,43,.3)}
+
+/* CLIENT GRID */
+.client-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.client-item{background:var(--warm);border:1px solid var(--border);border-radius:6px;padding:.55rem .8rem;font-size:.82rem;border-left:3px solid var(--gold);transition:transform .15s}
+.client-item:hover{transform:translateX(3px)}
+
+/* PRODUCT GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.prod-card{background:var(--warm);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center}
+.prod-card img{width:48px;height:48px;object-fit:cover;border-radius:4px;margin-bottom:8px}
+.prod-card h4{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--navy)}
+
+/* EQUIPMENT */
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.eq-card{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;border-top:3px solid var(--gold)}
+.eq-card h4{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.eq-card p{font-size:12px;color:var(--muted)}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--border);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:500px}
+table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;font-weight:500;font-size:12px;letter-spacing:.3px}
+table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+table tr:last-child td{border-bottom:none}
+table tr:hover td{background:var(--warm)}
+.highlight-row td{font-weight:600;background:rgba(196,154,43,.08)}
+
+/* IMAGE GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.gallery-item{border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.gallery-item img{width:100%;height:150px;object-fit:cover;display:block}
+.gallery-caption{padding:6px 10px;font-size:11px;color:var(--muted);background:var(--warm);text-align:center}
+
+/* COMPLIANCE */
+.comp-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1.2rem;display:flex;gap:12px;align-items:flex-start}
+.comp-icon{font-size:1.5rem;color:var(--gold)}
+
+/* MV */
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mv-card{background:var(--navy);border-radius:8px;padding:1.5rem;color:#fff}
+.mv-card .icon{font-size:22px;color:var(--gold-lt);margin-bottom:10px;display:block}
+.mv-card h3{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:8px}
+.mv-card p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.7}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start}
+.contact-item{display:flex;gap:14px;margin-bottom:1.25rem;align-items:flex-start}
+.contact-icon{width:38px;height:38px;min-width:38px;background:var(--warm);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.contact-label{font-size:12px;color:var(--muted);margin-bottom:2px}
+.contact-val{font-size:14px;color:var(--navy);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--navy);padding:3rem 2rem 1.5rem;color:rgba(255,255,255,.6)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .nav-logo{margin-bottom:12px}
+.footer-brand p{font-size:13px;line-height:1.7}
+.footer-col h4{color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:7px;font-size:12px;cursor:pointer}
+.footer-col a{color:rgba(255,255,255,.5);text-decoration:none}
+.footer-col a:hover{color:var(--gold-lt)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bottom p{font-size:12px}
+.footer-badge{background:rgba(196,154,43,.15);border:1px solid rgba(196,154,43,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--gold-lt)}
+
+/* UTILITY */
+.bg-warm{background:var(--warm)}
+.bg-cream{background:var(--cream)}
+.text-center{text-align:center}
+.mt-1{margin-top:1rem}
+.mt-2{margin-top:2rem}
+.mb-1{margin-bottom:1rem}
+.mb-2{margin-bottom:2rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">SS</div>
+    <span class="nav-name">SS Garments</span>
+  </div>
+  <div class="nav-badge">Est. 2001 · Lahore</div>
+</nav>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showPage('home')">Home</div>
+  <div class="tab" onclick="showPage('about')">About</div>
+  <div class="tab" onclick="showPage('products')">Products</div>
+  <div class="tab" onclick="showPage('clients')">Clients</div>
+  <div class="tab" onclick="showPage('bank')">Bank &amp; Tax</div>
+  <div class="tab" onclick="showPage('returns')">Tax Returns</div>
+  <div class="tab" onclick="showPage('gallery')">Gallery</div>
+  <div class="tab" onclick="showPage('contact')">Contact</div>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-text">
+      <p style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:500;margin-bottom:12px">Pakistan's Trusted Uniform Manufacturer</p>
+      <h1>Quality Uniforms &amp;<br><span>Workwear Solutions</span><br>Since 2001.</h1>
+      <p>Manufacturer and supplier of premium corporate uniforms, industrial workwear, healthcare apparel, and textile products — crafted in Lahore and delivered across Pakistan.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="showPage('contact');return false">Contact Us</a>
+        <a href="#" class="btn-outline" onclick="showPage('about');return false">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card"><p>Corporate Uniforms</p></div>
+      <div class="hero-card"><p>Industrial Workwear</p></div>
+      <div class="hero-card"><p>Safety Clothing</p></div>
+      <div class="hero-card"><p>Custom Embroidery</p></div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">24+</div><div class="stat-label">Years in Business</div></div>
+    <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Major Clients</div></div>
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Skilled Staff</div></div>
+    <div class="stat"><div class="stat-num">50M</div><div class="stat-label">Annual Turnover (PKR)</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">About Us</div>
+    <div class="section-title">SS Garments — A Legacy of Quality</div>
+    <div class="grid-2" style="align-items:start">
+      <div>
+        <p style="color:var(--muted);line-height:1.8">SS Garments is a reputable stitched garment producer based in Lahore, Pakistan, established in <strong>2001</strong>. We specialize in all types of uniforms, fashion garments, and garment accessories. Our mission is rooted in teamwork — we believe it is the only policy to achieve targets. We use our utmost efforts and care to serve our customers honestly and meet their needs in the best way which ensures their satisfaction.</p>
+        <div style="margin-top:1.5rem">
+          <span class="tag tag-gold">Proprietorship</span>
+          <span class="tag tag-gold">Active Taxpayer</span>
+          <span class="tag tag-gold">Sales Tax Registered</span>
+          <span class="tag tag-gold">FBR Compliant</span>
+        </div>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card">
+          <span class="icon">Vision</span>
+          <h3>Our Vision</h3>
+          <p>To be Pakistan's most trusted uniform and workwear partner, known for quality, innovation, and reliability.</p>
+        </div>
+        <div class="mv-card">
+          <span class="icon">Mission</span>
+          <h3>Our Mission</h3>
+          <p>Delivering precision-crafted uniforms and textile solutions that help organizations present their teams professionally.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section bg-warm">
+    <div class="section-label">What We Offer</div>
+    <div class="section-title">Our Core Products</div>
+    <div class="prod-grid">
+      <div class="prod-card"><h4>Corporate Uniforms</h4></div>
+      <div class="prod-card"><h4>Industrial Workwear</h4></div>
+      <div class="prod-card"><h4>Hospitality Uniforms</h4></div>
+      <div class="prod-card"><h4>Healthcare Uniforms</h4></div>
+      <div class="prod-card"><h4>Safety Clothing</h4></div>
+      <div class="prod-card"><h4>Dangri &amp; Aprons</h4></div>
+      <div class="prod-card"><h4>Hospital Bed Sheets</h4></div>
+      <div class="prod-card"><h4>Men's Shalwar Kameez</h4></div>
+      <div class="prod-card"><h4>Jackets &amp; Denim</h4></div>
+      <div class="prod-card"><h4>T-Shirts &amp; Casuals</h4></div>
+      <div class="prod-card"><h4>Screen Printing</h4></div>
+      <div class="prod-card"><h4>Custom Embroidery</h4></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div class="page" id="page-about">
+  <div class="section">
+    <div class="section-label">Company Details</div>
+    <div class="section-title">Complete Profile</div>
+
+    <div class="grid-2" style="margin-bottom:2rem">
+      <div>
+        <div class="section-title-sm">General Information</div>
+        <div class="info-card">
+          <div class="info-row"><span class="info-label">Company Name</span><span class="info-value">SS Garments</span></div>
+          <div class="info-row"><span class="info-label">Owner / CEO</span><span class="info-value">Muhammad Talha Saleem</span></div>
+          <div class="info-row"><span class="info-label">CNIC</span><span class="info-value">35201-2967255-1</span></div>
+          <div class="info-row"><span class="info-label">Ownership</span><span class="info-value">Proprietorship</span></div>
+          <div class="info-row"><span class="info-label">Established</span><span class="info-value">2001</span></div>
+          <div class="info-row"><span class="info-label">Employees</span><span class="info-value">20+</span></div>
+          <div class="info-row"><span class="info-label">Annual Turnover</span><span class="info-value">PKR 50 Million</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title-sm">Contact Information</div>
+        <div class="info-card">
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-value">0307-4243494</span></div>
+          <div class="info-row"><span class="info-label">WhatsApp</span><span class="info-value">0320-4702790</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-value">ssgarments.reloaded@gmail.com</span></div>
+          <div class="info-row"><span class="info-label">Website</span><span class="info-value">www.ssgarmentsmanufacturing.com</span></div>
+          <div class="info-row"><span class="info-label">Factory Address</span><span class="info-value">Plot no# 3, Dera Iqbal Rd, near New Amir Town Housing Scheme, Harbanspura, Lahore, Punjab 54850, Pakistan</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:2rem">
+      <div class="section-title-sm">Equipment &amp; Machinery</div>
+      <div class="eq-grid">
+        <div class="eq-card"><h4>JUKI · BROTHER · KANSAI</h4><p>20 Industrial Machines</p></div>
+        <div class="eq-card"><h4>Button-Hole Machine</h4><p>1 Unit</p></div>
+        <div class="eq-card"><h4>KAJ Machine</h4><p>1 Unit</p></div>
+        <div class="eq-card"><h4>Over-Lock Machines</h4><p>4 Units</p></div>
+        <div class="eq-card"><h4>Feedo + Flat Machines</h4><p>4 Units</p></div>
+        <div class="eq-card"><h4>Computerized Embroidery</h4><p>1 Machine</p></div>
+        <div class="eq-card"><h4>Screen Printing</h4><p>100-pc Round Capacity</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title-sm">Technology &amp; Innovation</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <p style="font-weight:500;color:var(--navy);margin-bottom:6px">Solutions Implemented</p>
+          <p style="font-size:.85rem;color:var(--muted)">Digital sizing portal, QR code system, barcode tracking, and production monitoring for efficient order management and timely delivery.</p>
+        </div>
+        <div class="info-card">
+          <p style="font-weight:500;color:var(--navy);margin-bottom:6px">Benefits Achieved</p>
+          <p style="font-size:.85rem;color:var(--muted)">Improved accuracy, reduced manual errors, faster order processing, enhanced traceability, and timely deliveries.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section bg-cream">
+    <div class="section-label">Compliance</div>
+    <div class="section-title">Legal &amp; Ethical Standards</div>
+    <div class="grid-2">
+      <div class="comp-card">
+        <div class="comp-icon">&#9878;</div>
+        <div><h4 style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px">Labor Law Compliance</h4><p style="font-size:13px;color:var(--muted)">Fully compliant with all applicable labor laws and regulations.</p></div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">&#128120;</div>
+        <div><h4 style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px">No Child Labor</h4><p style="font-size:13px;color:var(--muted)">We strictly prohibit and do not employ child labor in any operation.</p></div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">&#128737;</div>
+        <div><h4 style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px">Health &amp; Safety</h4><p style="font-size:13px;color:var(--muted)">We maintain a safe and healthy workplace in accordance with applicable safety standards.</p></div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">&#128220;</div>
+        <div><h4 style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px">Legal Cases</h4><p style="font-size:13px;color:var(--muted)">No legal cases or regulatory violations during the last 5 years.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRODUCTS ==================== -->
+<div class="page" id="page-products">
+  <div class="section">
+    <div class="section-label">Our Range</div>
+    <div class="section-title">Products &amp; Services</div>
+    <p class="section-sub">We are specially dealing in all types of uniforms and garment items for various sectors.</p>
+
+    <div class="section-title-sm" style="margin-top:2rem">Uniforms</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem">
+      <span class="tag">Factories</span>
+      <span class="tag">Companies</span>
+      <span class="tag">Doctors &amp; Nurses Coats</span>
+      <span class="tag">University</span>
+      <span class="tag">Colleges</span>
+      <span class="tag">Schools</span>
+      <span class="tag">Security Agencies</span>
+      <span class="tag">Hospital Bed Sheets</span>
+      <span class="tag">Aprons</span>
+      <span class="tag">Banks</span>
+      <span class="tag">Work Wear</span>
+      <span class="tag">Dangri</span>
+      <span class="tag">Safety Clothing</span>
+    </div>
+
+    <div class="section-title-sm">Men's Wear</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem">
+      <span class="tag">Dresses</span>
+      <span class="tag">Shalwar Kameez</span>
+      <span class="tag">Jackets</span>
+      <span class="tag">Denim Jeans</span>
+      <span class="tag">Shirts</span>
+      <span class="tag">T-Shirts</span>
+      <span class="tag">Casual Wear</span>
+      <span class="tag">Formal Wear</span>
+      <span class="tag">Men's Accessories</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CLIENTS ==================== -->
+<div class="page" id="page-clients">
+  <div class="section">
+    <div class="section-label">Our Clientele</div>
+    <div class="section-title">Major Clients (40+)</div>
+    <p class="section-sub">SS Garments has served these organizations with great appreciation and delivered highly intrinsic value.</p>
+    <div class="client-grid">
+      <div class="client-item">Mannan Shahid Forgings Ltd, Lahore</div>
+      <div class="client-item">Millat Tractors Limited</div>
+      <div class="client-item">Millat Equipment Limited</div>
+      <div class="client-item">Darson Industries, Wazirabad</div>
+      <div class="client-item">Ravi Exchange (Pvt.) Ltd, Lahore</div>
+      <div class="client-item">Pakistan Spring (Pvt.) Ltd, Sheikhupura</div>
+      <div class="client-item">Islamia University, Bahawalpur</div>
+      <div class="client-item">Punjab Industrial Estates, Lahore</div>
+      <div class="client-item">The Pakistan Mint, Lahore</div>
+      <div class="client-item">Spell Packages, Lahore</div>
+      <div class="client-item">Qingqi Motor Works Ltd, Lahore</div>
+      <div class="client-item">Abbott Laboratories (Pak.) Ltd, Lahore</div>
+      <div class="client-item">R.K. Gears (Private) Limited, Lahore</div>
+      <div class="client-item">Ghulam Muhammad &amp; Sons, Lahore</div>
+      <div class="client-item">Vocational Training Institutes, Lahore</div>
+      <div class="client-item">Master Engineering Company, Lahore</div>
+      <div class="client-item">Hascol Petrol Pumps, Lahore</div>
+      <div class="client-item">SIR Engineering (Pvt.) Ltd, Lahore</div>
+      <div class="client-item">Karneez (Pvt.) Ltd, Islamabad</div>
+      <div class="client-item">Al Badar Engineering (Pvt) Ltd, Wazirabad</div>
+      <div class="client-item">Al Badar Engineering (Pvt) Ltd, Sheikhupura</div>
+      <div class="client-item">Siddiq Brothers Engineering (Pvt) Ltd, Lahore</div>
+      <div class="client-item">Thermosolé Industries (Pvt) Ltd, Lahore</div>
+      <div class="client-item">MGA Industries Pvt Ltd, Lahore</div>
+      <div class="client-item">Perfect Electro Mek (PEMPAK), Lahore</div>
+      <div class="client-item">Decent Departmental Store, Lahore</div>
+      <div class="client-item">Unilever Pakistan Limited, Khanewal</div>
+      <div class="client-item">3-S Solution Software House, Lahore</div>
+      <div class="client-item">Edhi Foundation Pakistan</div>
+      <div class="client-item">Tetra Pak Pakistan</div>
+      <div class="client-item">Buhler Pakistan</div>
+      <div class="client-item">CBRE Pakistan</div>
+      <div class="client-item">Rainbow Cash &amp; Carry Pakistan</div>
+      <div class="client-item">Kamran Steels</div>
+      <div class="client-item">Service Industries Pakistan</div>
+      <div class="client-item">Service Tyre (Pvt.) Ltd</div>
+      <div class="client-item">Excel Engineering (Pvt.) Ltd</div>
+      <div class="client-item">Precision Forging (Pvt.) Ltd</div>
+      <div class="client-item">GR Engineering Works Pvt Ltd</div>
+      <div class="client-item">Sino Diesel Sundar</div>
+      <div class="client-item">Standard Engineering Pvt Ltd</div>
+      <div class="client-item">Ramzan Group of Industries</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BANK & TAX ==================== -->
+<div class="page" id="page-bank">
+  <div class="section">
+    <div class="section-label">Financial &amp; Regulatory</div>
+    <div class="section-title">Banking &amp; Tax Information</div>
+
+    <div class="grid-2" style="margin-bottom:2rem">
+      <div>
+        <div class="section-title-sm">Bank Account Details</div>
+        <div class="info-card">
+          <div class="info-row"><span class="info-label">Bank</span><span class="info-value">Meezan Bank Ltd.</span></div>
+          <div class="info-row"><span class="info-label">Branch</span><span class="info-value">Harbanspura (Branch 1150)</span></div>
+          <div class="info-row"><span class="info-label">Account Title</span><span class="info-value">SS Garments</span></div>
+          <div class="info-row"><span class="info-label">Account Number</span><span class="info-value">0110848087</span></div>
+          <div class="info-row"><span class="info-label">Account Type</span><span class="info-value">Meezan Rupee Current A/c</span></div>
+          <div class="info-row"><span class="info-label">Currency</span><span class="info-value">PKR</span></div>
+          <div class="info-row"><span class="info-label">Account Opened</span><span class="info-value">29 October 2024</span></div>
+          <div class="info-row"><span class="info-label">Certificate Date</span><span class="info-value">16 July 2026</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title-sm">Income Tax Registration</div>
+        <div class="info-card">
+          <div class="info-row"><span class="info-label">Name</span><span class="info-value">Muhammad Talha Saleem</span></div>
+          <div class="info-row"><span class="info-label">Registration No.</span><span class="info-value">3520129672551</span></div>
+          <div class="info-row"><span class="info-label">NTN</span><span class="info-value">6301186-7</span></div>
+          <div class="info-row"><span class="info-label">Category</span><span class="info-value">Individual / Pakistani Male</span></div>
+          <div class="info-row"><span class="info-label">Income Tax</span><span class="info-value"><span class="tag tag-green">Active</span></span></div>
+          <div class="info-row"><span class="info-label">Tax Office</span><span class="info-value">RTO Lahore</span></div>
+          <div class="info-row"><span class="info-label">Registered On</span><span class="info-value">07 September 2019</span></div>
+          <div class="info-row"><span class="info-label">ATL Status</span><span class="info-value"><span class="tag tag-green">Active Taxpayer</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title-sm">Sales Tax Registration</div>
+      <div class="info-card" style="margin-bottom:1.5rem">
+        <div class="info-row"><span class="info-label">Sales Tax Status</span><span class="info-value"><span class="tag tag-green">Operative</span> (w.e.f. 07-Jul-2025)</span></div>
+        <div class="info-row"><span class="info-label">Business Name</span><span class="info-value">SS Garments</span></div>
+        <div class="info-row"><span class="info-label">Business Address</span><span class="info-value">Nawaz Park, Dera Iqbal Rd, Near New Amir Town Housing Scheme, Harbanspura, Lahore</span></div>
+        <div class="info-row"><span class="info-label">Principal Activity 1</span><span class="info-value">329000 — Manufacturing / Other manufacturing n.e.c.</span></div>
+        <div class="info-row"><span class="info-label">Principal Activity 2</span><span class="info-value">139900 — Manufacture of other textiles n.e.c.</span></div>
+        <div class="info-row"><span class="info-label">Return Filing</span><span class="info-value">Filed 6 ST&amp;FE Returns in past 6 periods</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAX RETURNS ==================== -->
+<div class="page" id="page-returns">
+  <div class="section">
+    <div class="section-label">Sales Tax</div>
+    <div class="section-title">Sales Tax Return — May 2026</div>
+    <p class="section-sub">Period: 01-May-2026 to 31-May-2026 | Filed: 18-Jun-2026 (Online) | Due: 01-Jul-2026</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Particulars</th><th>Description</th><th>Value (PKR)</th></tr></thead>
+        <tbody>
+          <tr><td colspan="3" style="font-weight:600;background:var(--warm)">Input Tax (Purchases)</td></tr>
+          <tr><td>1</td><td>Domestic Purchases from Registered Persons</td><td>1,038,100</td></tr>
+          <tr><td>5</td><td>Input Tax for the Month</td><td>186,858</td></tr>
+          <tr><td>6</td><td>Credit Brought Forward</td><td>26,387</td></tr>
+          <tr><td>8</td><td><strong>Accumulated Credit</strong></td><td><strong>213,245</strong></td></tr>
+          <tr><td colspan="3" style="font-weight:600;background:var(--warm)">Output Tax (Sales)</td></tr>
+          <tr><td>9</td><td>Total Goods/Services Supplied Locally</td><td>1,373,239</td></tr>
+          <tr><td>15</td><td><strong>Output Tax</strong></td><td><strong>247,182</strong></td></tr>
+          <tr><td colspan="3" style="font-weight:600;background:var(--warm)">Tax Payable</td></tr>
+          <tr><td>25</td><td>Admissible Credit</td><td>213,245</td></tr>
+          <tr><td>32</td><td><strong>Sales Tax Payable</strong></td><td><strong>33,937</strong></td></tr>
+          <tr class="highlight-row"><td>35</td><td><strong>Total Amount Paid</strong> (29-Jun-2026)</td><td><strong>33,937</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem;padding:1rem;background:var(--cream);border:1px solid var(--border);border-radius:6px">
+      <p style="font-size:.85rem"><strong>CPR No:</strong> ST202606290101203860 &nbsp;|&nbsp; <strong>Payment:</strong> 29-Jun-2026 &nbsp;|&nbsp; <strong>Head:</strong> B02341 — Sales Tax on Goods</p>
+    </div>
+  </div>
+
+  <div class="section bg-cream">
+    <div class="section-title-sm">Annex-A — Purchase Invoices (May 2026)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Supplier</th><th>Reg No.</th><th>Date</th><th>HS Code</th><th>Qty</th><th>Value (PKR)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Easy Mart</td><td>6606374</td><td>11-Mar-2026</td><td>6307.1010</td><td>74.52 KG</td><td>569,800</td></tr>
+          <tr><td>2</td><td>Easy Mart</td><td>6606374</td><td>05-Mar-2026</td><td>6307.1010</td><td>56.27 KG</td><td>430,200</td></tr>
+          <tr><td>3</td><td>Farid Ahmed Vawda</td><td>4230121443253</td><td>09-Mar-2026</td><td>3809.9190</td><td>30 KG</td><td>19,050</td></tr>
+          <tr><td>4</td><td>Farid Ahmed Vawda</td><td>4230121443253</td><td>03-Mar-2026</td><td>3809.9190</td><td>30 KG</td><td>19,050</td></tr>
+          <tr style="font-weight:600;background:var(--warm)"><td colspan="5">Total Purchases</td><td>190.79</td><td>1,038,100</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title-sm">Annex-C — Sales Invoices (May 2026)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Buyer</th><th>Date</th><th>HS Code</th><th>Qty</th><th>Value (PKR)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6211.1100</td><td>108 pcs</td><td>351,000</td></tr>
+          <tr><td>2</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6307.2000</td><td>20 KG</td><td>13,000</td></tr>
+          <tr><td>3</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6116.9900</td><td>380 pcs</td><td>171,000</td></tr>
+          <tr><td>4</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6115.2900</td><td>380 pcs</td><td>156,560</td></tr>
+          <tr><td>5</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6217.1000</td><td>21 KG</td><td>54,600</td></tr>
+          <tr><td>6</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6211.1100</td><td>24 pcs</td><td>123,840</td></tr>
+          <tr><td>7</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6211.1100</td><td>42 pcs</td><td>197,400</td></tr>
+          <tr><td>8</td><td>CBRE Corporate Outsourcing (Pvt.) Ltd</td><td>14-May-2026</td><td>6307.9030</td><td>22 KG</td><td>14,300</td></tr>
+          <tr><td>9</td><td>CBRE Corporate Outsourcing (Pvt.) Ltd</td><td>14-May-2026</td><td>6116.9900</td><td>22 pcs</td><td>41,250</td></tr>
+          <tr><td>10</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6211.1100</td><td>16 pcs</td><td>79,680</td></tr>
+          <tr><td>11</td><td>Service Industries Ltd</td><td>14-May-2026</td><td>6116.9900</td><td>164 pcs</td><td>67,568</td></tr>
+          <tr><td>12</td><td>CBRE Corporate Outsourcing (Pvt.) Ltd</td><td>14-May-2026</td><td>6116.9900</td><td>1 pcs</td><td>31,105</td></tr>
+          <tr><td>13</td><td>CBRE Corporate Outsourcing (Pvt.) Ltd</td><td>04-May-2026</td><td>6211.1100</td><td>1 pcs</td><td>71,936</td></tr>
+          <tr style="font-weight:600;background:var(--warm)"><td colspan="4">Total Sales</td><td>1,201</td><td>1,373,239</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:1rem;padding:1rem;background:var(--cream);border:1px solid var(--border);border-radius:6px;font-size:.85rem;color:var(--muted)">
+      <strong>Buyers:</strong> SERVICE INDUSTRIES LTD (Lahore) · CBRE CORPORATE OUTSOURCING (PVT.) LIMITED (Karachi) &nbsp;|&nbsp; <strong>All sales at 18% standard rate</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== GALLERY ==================== -->
+<div class="page" id="page-gallery">
+  <div class="section">
+    <div class="section-label">Photos</div>
+    <div class="section-title">Gallery</div>
+    <p class="section-sub">Images related to SS Garments operations and documentation.</p>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%2012.52.54%20PM.jpeg" alt="SS Garments Image 1" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 1</div>
+      </div>
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%2012.52.54%20PM%20(1).jpeg" alt="SS Garments Image 2" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 2</div>
+      </div>
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%2012.52.54%20PM%20(2).jpeg" alt="SS Garments Image 3" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 3</div>
+      </div>
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%2012.52.54%20PM%20(3).jpeg" alt="SS Garments Image 4" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 4</div>
+      </div>
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%201.28.43%20PM.jpeg" alt="SS Garments Image 5" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 5</div>
+      </div>
+      <div class="gallery-item">
+        <img src="WhatsApp%20Image%202026-07-16%20at%201.50.19%20PM.jpeg" alt="SS Garments Image 6" loading="lazy">
+        <div class="gallery-caption">SS Garments — Photo 6</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTACT ==================== -->
+<div class="page" id="page-contact">
+  <div class="section">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">Contact SS Garments</div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">&#128205;</div>
+          <div><div class="contact-label">Factory Address</div><div class="contact-val">Plot no# 3, Dera Iqbal Rd, near New Amir Town Housing Scheme, Harbanspura, Lahore, Punjab 54850</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">&#128222;</div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">0307-4243494</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">&#128242;</div>
+          <div><div class="contact-label">WhatsApp</div><div class="contact-val">0320-4702790</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">&#9993;</div>
+          <div><div class="contact-label">Email</div><div class="contact-val">ssgarments.reloaded@gmail.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">&#127760;</div>
+          <div><div class="contact-label">Website</div><div class="contact-val">www.ssgarmentsmanufacturing.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">&#128338;</div>
+          <div><div class="contact-label">Registered Since</div><div class="contact-val">2001 — Over 24 years of service</div></div>
+        </div>
+      </div>
+      <div style="background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <h3 style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:var(--navy);margin-bottom:1rem">Send an Inquiry</h3>
+        <form onsubmit="alert('Thank you for your inquiry. We will get back to you shortly.');return false">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div><label style="font-size:12px;font-weight:500;color:var(--navy);display:block;margin-bottom:4px">Full Name</label><input type="text" required style="width:100%;background:#fff;border:1px solid var(--border);border-radius:4px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none"></div>
+            <div><label style="font-size:12px;font-weight:500;color:var(--navy);display:block;margin-bottom:4px">Company</label><input type="text" required style="width:100%;background:#fff;border:1px solid var(--border);border-radius:4px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none"></div>
+            <div><label style="font-size:12px;font-weight:500;color:var(--navy);display:block;margin-bottom:4px">Phone / WhatsApp</label><input type="tel" required style="width:100%;background:#fff;border:1px solid var(--border);border-radius:4px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none"></div>
+            <div><label style="font-size:12px;font-weight:500;color:var(--navy);display:block;margin-bottom:4px">Email</label><input type="email" required style="width:100%;background:#fff;border:1px solid var(--border);border-radius:4px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none"></div>
+            <div style="grid-column:1/-1"><label style="font-size:12px;font-weight:500;color:var(--navy);display:block;margin-bottom:4px">Message</label><textarea required style="width:100%;min-height:90px;resize:vertical;background:#fff;border:1px solid var(--border);border-radius:4px;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none"></textarea></div>
+            <div style="grid-column:1/-1;margin-top:4px">
+              <button type="submit" style="width:100%;background:var(--navy);color:#fff;padding:12px;border-radius:4px;font-size:14px;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif">Send Message</button>
+            </div>
+            <div style="grid-column:1/-1;text-align:center;margin-top:8px">
+              <p style="font-size:12px;color:var(--muted);margin-bottom:8px">Or reach us directly on WhatsApp</p>
+              <a href="https://wa.me/923204702790" target="_blank" style="background:#25D366;color:#fff;padding:12px 24px;border-radius:4px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif">Chat on WhatsApp</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">SS</div>
+      <p style="margin-top:10px;font-size:13px;line-height:1.7">Manufacturer and supplier of quality uniforms and workwear. Serving Pakistan's leading organizations since 2001.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('home');return false">Home</a></li>
+        <li><a href="#" onclick="showPage('about');return false">About Us</a></li>
+        <li><a href="#" onclick="showPage('products');return false">Products</a></li>
+        <li><a href="#" onclick="showPage('clients');return false">Clients</a></li>
+        <li><a href="#" onclick="showPage('gallery');return false">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">0307-4243494</a></li>
+        <li><a href="#">0320-4702790</a></li>
+        <li><a href="#">ssgarments.reloaded@gmail.com</a></li>
+        <li><a href="#">Lahore, Pakistan</a></li>
+        <li style="margin-top:10px"><a href="#" onclick="showPage('contact');return false" style="color:var(--gold-lt);font-weight:500">→ Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 SS Garments. All rights reserved.</p>
+    <span class="footer-badge">Manufactured in Pakistan</span>
+  </div>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg)pg.classList.add('active');
+  const tabs=document.querySelectorAll('.tab');
+  const map={home:0,about:1,products:2,clients:3,bank:4,returns:5,gallery:6,contact:7};
+  if(map[id]!==undefined&&tabs[map[id]])tabs[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
